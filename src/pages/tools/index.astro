@@ -1,0 +1,84 @@
+---
+// Tools sayfası — 3 placeholder araç kartı
+import Layout from '../../layouts/Layout.astro';
+
+// Araç listesi — ileride ayrı bir veri dosyasına taşınabilir
+const tools = [
+  {
+    name: 'SEO Analyzer',
+    description: 'Paste any URL and get a quick on-page SEO audit: title length, meta description, heading structure, and core issues.',
+    status: 'coming-soon',
+    color: 'indigo',
+    icon: `<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />`,
+  },
+  {
+    name: 'WP Plugin Checker',
+    description: 'Check whether a WordPress plugin is actively maintained, its last update date, compatibility status, and known vulnerabilities.',
+    status: 'coming-soon',
+    color: 'emerald',
+    icon: `<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />`,
+  },
+  {
+    name: 'AI Prompt Builder',
+    description: 'Build structured prompts for GPT-4, Claude, and Gemini. Choose a task type, fill in context fields, and get a copy-ready prompt.',
+    status: 'coming-soon',
+    color: 'purple',
+    icon: `<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />`,
+  },
+];
+
+const colorMap: Record<string, { bg: string; text: string; badge: string }> = {
+  indigo:  { bg: 'bg-indigo-900/50',  text: 'text-indigo-400',  badge: 'bg-indigo-900/60 text-indigo-400 border-indigo-800' },
+  emerald: { bg: 'bg-emerald-900/50', text: 'text-emerald-400', badge: 'bg-emerald-900/60 text-emerald-400 border-emerald-800' },
+  purple:  { bg: 'bg-purple-900/50',  text: 'text-purple-400',  badge: 'bg-purple-900/60 text-purple-400 border-purple-800' },
+};
+---
+
+<Layout
+  title="Tools — Mustafa Toker"
+  description="Free web tools for SEO analysis, WordPress audits, and AI prompt workflows."
+>
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+    <!-- Sayfa başlığı -->
+    <div class="mb-12">
+      <h1 class="text-3xl sm:text-4xl font-bold text-white mb-3">Tools</h1>
+      <p class="text-gray-400 text-lg max-w-2xl">
+        Free, no-signup tools I built to solve real marketing and development problems.
+      </p>
+    </div>
+
+    <!-- Araç kartları -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      {tools.map((tool) => {
+        const c = colorMap[tool.color];
+        return (
+          <div class="bg-gray-900 border border-gray-800 rounded-xl p-6 flex flex-col">
+            <!-- İkon -->
+            <div class={`w-11 h-11 ${c.bg} rounded-lg flex items-center justify-center mb-4`}>
+              <svg class={`w-5 h-5 ${c.text}`} fill="none" stroke="currentColor" viewBox="0 0 24 24" set:html={tool.icon} />
+            </div>
+
+            <!-- Başlık + durum etiketi -->
+            <div class="flex items-start justify-between gap-3 mb-3">
+              <h2 class="text-white font-semibold text-lg">{tool.name}</h2>
+              <span class={`shrink-0 text-xs font-medium px-2.5 py-1 rounded-full border ${c.badge}`}>
+                Coming soon
+              </span>
+            </div>
+
+            <!-- Açıklama -->
+            <p class="text-gray-400 text-sm leading-relaxed flex-1">{tool.description}</p>
+
+            <!-- Devre dışı buton -->
+            <button
+              disabled
+              class="mt-6 w-full bg-gray-800 text-gray-500 text-sm font-medium py-2.5 rounded-lg cursor-not-allowed border border-gray-700"
+            >
+              Not available yet
+            </button>
+          </div>
+        );
+      })}
+    </div>
+  </div>
+</Layout>

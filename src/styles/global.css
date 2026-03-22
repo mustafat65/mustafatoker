@@ -1,0 +1,17 @@
+/* Tailwind CSS v4 — tek import ile tüm katmanlar dahil edilir */
+@import "tailwindcss";
+
+/* Temel özelleştirmeler */
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-gray-950 text-gray-100 antialiased;
+  }
+
+  a {
+    @apply transition-colors duration-200;
+  }
+}

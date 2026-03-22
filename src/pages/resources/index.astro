@@ -1,0 +1,102 @@
+---
+// Kaynaklar sayfası — kategorili link listesi (placeholder)
+import Layout from '../../layouts/Layout.astro';
+
+// Kaynak kategorileri ve linkleri — ileride CMS / MD dosyalarından çekilebilir
+const categories = [
+  {
+    name: 'SEO & Content',
+    color: 'indigo',
+    links: [
+      { title: 'Google Search Central Documentation', url: '#', description: 'Official guidance from Google on how Search works.' },
+      { title: 'Ahrefs Blog', url: '#', description: 'In-depth SEO tutorials, case studies, and data-driven guides.' },
+      { title: 'Search Engine Land', url: '#', description: 'Daily news and analysis covering all aspects of search marketing.' },
+    ],
+  },
+  {
+    name: 'Marketing Automation',
+    color: 'emerald',
+    links: [
+      { title: 'Make (Integromat) Docs', url: '#', description: 'Official docs for building no-code automation workflows.' },
+      { title: 'n8n Community', url: '#', description: 'Open-source workflow automation — self-hostable alternative to Zapier.' },
+      { title: 'ActiveCampaign Guides', url: '#', description: 'Email marketing, CRM, and automation playbooks.' },
+    ],
+  },
+  {
+    name: 'Developer Tools',
+    color: 'purple',
+    links: [
+      { title: 'Astro Documentation', url: '#', description: 'The framework powering this site — perfect for content-heavy projects.' },
+      { title: 'Tailwind CSS', url: '#', description: 'Utility-first CSS framework. Fast, composable, and designer-friendly.' },
+      { title: 'Cloudflare Workers', url: '#', description: 'Edge compute platform for deploying fast, global web apps.' },
+    ],
+  },
+  {
+    name: 'AI & Prompting',
+    color: 'amber',
+    links: [
+      { title: 'Anthropic Prompt Library', url: '#', description: 'Curated prompts across categories from the makers of Claude.' },
+      { title: 'OpenAI Cookbook', url: '#', description: 'Practical examples and best practices for the OpenAI API.' },
+      { title: 'LearnPrompting.org', url: '#', description: 'Free, open-source guide to prompt engineering techniques.' },
+    ],
+  },
+];
+
+const colorMap: Record<string, { dot: string; title: string; link: string }> = {
+  indigo:  { dot: 'bg-indigo-400',  title: 'text-indigo-400',  link: 'hover:text-indigo-400' },
+  emerald: { dot: 'bg-emerald-400', title: 'text-emerald-400', link: 'hover:text-emerald-400' },
+  purple:  { dot: 'bg-purple-400',  title: 'text-purple-400',  link: 'hover:text-purple-400' },
+  amber:   { dot: 'bg-amber-400',   title: 'text-amber-400',   link: 'hover:text-amber-400' },
+};
+---
+
+<Layout
+  title="Resources — Mustafa Toker"
+  description="Curated links, tools, and references across SEO, marketing automation, and development."
+>
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+    <!-- Sayfa başlığı -->
+    <div class="mb-12">
+      <h1 class="text-3xl sm:text-4xl font-bold text-white mb-3">Resources</h1>
+      <p class="text-gray-400 text-lg max-w-2xl">
+        Curated links I actually use — no padding, no affiliate lists. Updated as I find things worth sharing.
+      </p>
+    </div>
+
+    <!-- Kategoriler -->
+    <div class="space-y-12">
+      {categories.map((cat) => {
+        const c = colorMap[cat.color];
+        return (
+          <div>
+            <!-- Kategori başlığı -->
+            <div class="flex items-center gap-3 mb-5">
+              <span class={`w-2.5 h-2.5 rounded-full ${c.dot}`}></span>
+              <h2 class={`text-lg font-semibold ${c.title}`}>{cat.name}</h2>
+            </div>
+
+            <!-- Linkler -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+              {cat.links.map((link) => (
+                <a
+                  href={link.url}
+                  class={`group block bg-gray-900 hover:bg-gray-800 border border-gray-800 hover:border-gray-700 rounded-lg p-4 transition-all`}
+                >
+                  <div class="flex items-start justify-between gap-2">
+                    <h3 class={`text-white text-sm font-medium group-hover:${c.link.replace('hover:', '')} transition-colors leading-snug`}>
+                      {link.title}
+                    </h3>
+                    <svg class="w-4 h-4 text-gray-600 group-hover:text-gray-400 shrink-0 mt-0.5 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                    </svg>
+                  </div>
+                  <p class="text-gray-500 text-xs mt-1.5 leading-relaxed">{link.description}</p>
+                </a>
+              ))}
+            </div>
+          </div>
+        );
+      })}
+    </div>
+  </div>
+</Layout>

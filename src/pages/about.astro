@@ -1,0 +1,91 @@
+---
+// Hakkında sayfası
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout
+  title="About — Mustafa Toker"
+  description="Marketing technologist, developer, and builder of systems that scale."
+>
+  <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+    <!-- Başlık -->
+    <div class="mb-12">
+      <h1 class="text-3xl sm:text-4xl font-bold text-white mb-2">About</h1>
+      <p class="text-gray-500 text-sm">Last updated: 2025</p>
+    </div>
+
+    <!-- Avatar + isim -->
+    <div class="flex items-center gap-5 mb-10">
+      <div class="w-16 h-16 rounded-full bg-gradient-to-br from-indigo-600 to-purple-600 flex items-center justify-center text-white text-xl font-bold shrink-0">
+        MT
+      </div>
+      <div>
+        <h2 class="text-white font-semibold text-xl">Mustafa Toker</h2>
+        <p class="text-gray-400 text-sm">Marketing Technologist · Istanbul, Turkey</p>
+      </div>
+    </div>
+
+    <!-- Bio metni -->
+    <div class="prose prose-invert prose-gray max-w-none space-y-5 text-gray-300 leading-relaxed">
+      <p>
+        I'm a marketing technologist who sits at the intersection of SEO, automation, and software development.
+        I've spent years building systems that help businesses grow — from technical SEO audits and content pipelines
+        to custom WordPress tooling and no-code automation workflows.
+      </p>
+
+      <p>
+        My work tends to be practical. I'm less interested in trends and more interested in what actually moves metrics.
+        That usually means understanding how search engines work, how to automate repetitive marketing tasks,
+        and how to build lightweight tools that solve real problems.
+      </p>
+
+      <p>
+        This site is where I share what I learn — through long-form writing, open tools, and curated resources.
+        Everything here is stuff I'd send to a colleague.
+      </p>
+    </div>
+
+    <!-- Bölücü -->
+    <hr class="border-gray-800 my-10" />
+
+    <!-- Çalışma alanları -->
+    <div class="mb-10">
+      <h3 class="text-white font-semibold mb-5">What I work on</h3>
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+        {[
+          { label: 'Technical SEO', desc: 'Site architecture, crawlability, Core Web Vitals' },
+          { label: 'Marketing Automation', desc: 'Make, n8n, email sequences, CRM flows' },
+          { label: 'Content Systems', desc: 'Programmatic content, topical authority builds' },
+          { label: 'Developer Tooling', desc: 'WordPress plugins, web scrapers, internal tools' },
+        ].map((item) => (
+          <div class="bg-gray-900 border border-gray-800 rounded-lg px-4 py-3">
+            <p class="text-white text-sm font-medium">{item.label}</p>
+            <p class="text-gray-500 text-xs mt-0.5">{item.desc}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+
+    <!-- İletişim -->
+    <div class="bg-gray-900 border border-gray-800 rounded-xl p-6">
+      <h3 class="text-white font-semibold mb-2">Get in touch</h3>
+      <p class="text-gray-400 text-sm mb-4">
+        Have a project in mind or want to talk shop? Reach out on Twitter / X or via email.
+      </p>
+      <div class="flex flex-wrap gap-3">
+        <a
+          href="#"
+          class="inline-flex items-center gap-2 bg-gray-800 hover:bg-gray-700 text-white text-sm font-medium px-4 py-2 rounded-lg transition-colors border border-gray-700"
+        >
+          Twitter / X
+        </a>
+        <a
+          href="mailto:hello@mustafatoker.com"
+          class="inline-flex items-center gap-2 bg-indigo-600 hover:bg-indigo-500 text-white text-sm font-medium px-4 py-2 rounded-lg transition-colors"
+        >
+          Send an email
+        </a>
+      </div>
+    </div>
+  </div>
+</Layout>

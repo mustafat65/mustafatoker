@@ -1,0 +1,70 @@
+---
+// Sticky navbar — logo solda, linkler sağda, mobil hamburger menü
+---
+
+<nav class="sticky top-0 z-50 bg-gray-950/95 backdrop-blur border-b border-gray-800">
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex items-center justify-between h-16">
+      <!-- Logo -->
+      <a href="/" class="text-white font-bold text-xl tracking-tight hover:text-indigo-400">
+        Mustafa Toker
+      </a>
+
+      <!-- Desktop nav linkleri -->
+      <div class="hidden md:flex items-center gap-8">
+        <a href="/blog" class="text-gray-400 hover:text-white text-sm font-medium">Blog</a>
+        <a href="/tools" class="text-gray-400 hover:text-white text-sm font-medium">Tools</a>
+        <a href="/resources" class="text-gray-400 hover:text-white text-sm font-medium">Resources</a>
+        <a href="/about" class="text-gray-400 hover:text-white text-sm font-medium">About</a>
+      </div>
+
+      <!-- Mobil hamburger butonu -->
+      <button
+        id="menu-toggle"
+        class="md:hidden text-gray-400 hover:text-white p-2 rounded-md"
+        aria-label="Toggle menu"
+        aria-expanded="false"
+      >
+        <svg id="icon-open" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+        </svg>
+        <svg id="icon-close" class="w-6 h-6 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+        </svg>
+      </button>
+    </div>
+  </div>
+
+  <!-- Mobil menü (JS ile toggle) -->
+  <div id="mobile-menu" class="hidden md:hidden border-t border-gray-800">
+    <div class="px-4 py-3 space-y-1">
+      <a href="/blog" class="block text-gray-400 hover:text-white hover:bg-gray-900 px-3 py-2 rounded-md text-sm font-medium">Blog</a>
+      <a href="/tools" class="block text-gray-400 hover:text-white hover:bg-gray-900 px-3 py-2 rounded-md text-sm font-medium">Tools</a>
+      <a href="/resources" class="block text-gray-400 hover:text-white hover:bg-gray-900 px-3 py-2 rounded-md text-sm font-medium">Resources</a>
+      <a href="/about" class="block text-gray-400 hover:text-white hover:bg-gray-900 px-3 py-2 rounded-md text-sm font-medium">About</a>
+    </div>
+  </div>
+</nav>
+
+<script>
+  const toggle = document.getElementById('menu-toggle');
+  const menu = document.getElementById('mobile-menu');
+  const iconOpen = document.getElementById('icon-open');
+  const iconClose = document.getElementById('icon-close');
+
+  toggle?.addEventListener('click', () => {
+    const isOpen = !menu?.classList.contains('hidden');
+
+    if (isOpen) {
+      menu?.classList.add('hidden');
+      iconOpen?.classList.remove('hidden');
+      iconClose?.classList.add('hidden');
+      toggle.setAttribute('aria-expanded', 'false');
+    } else {
+      menu?.classList.remove('hidden');
+      iconOpen?.classList.add('hidden');
+      iconClose?.classList.remove('hidden');
+      toggle.setAttribute('aria-expanded', 'true');
+    }
+  });
+</script>

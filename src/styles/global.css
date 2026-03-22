@@ -1,5 +1,6 @@
 /* Tailwind CSS v4 — tek import ile tüm katmanlar dahil edilir */
 @import "tailwindcss";
+@plugin "@tailwindcss/typography";
 
 /* Temel özelleştirmeler */
 @layer base {
